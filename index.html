@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hinata Moon 日向ヒナタ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+<div id="petals-container"></div>
+<div class="electric-overlay"></div>
+
+<!-- =============================================
+     MODALES DE SECCIONES (abren dentro de la página)
+     ============================================= -->
+
+<!-- MODAL TELEGRAM -->
+<div class="section-modal" id="modal-telegram">
+  <div class="modal-backdrop" onclick="closeModal('modal-telegram')"></div>
+  <div class="modal-content modal-content--telegram">
+    <button class="modal-close" onclick="closeModal('modal-telegram')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      CERRAR
+    </button>
+    <div class="modal-bg-img"></div>
+    <div class="modal-bg-overlay modal-bg-overlay--tg"></div>
+    <div class="modal-frame-svg-wrap">
+      <svg class="modal-frame-svg" viewBox="0 0 800 580" preserveAspectRatio="none">
+        <rect class="modal-frame-rect modal-frame-rect--tg" x="3" y="3" width="794" height="574" rx="22" ry="22" fill="none"/>
+      </svg>
+    </div>
+    <div class="modal-inner">
+      <div class="modal-icon modal-icon--tg">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      </div>
+      <h2 class="modal-title modal-title--tg">GRUPO SECRETO</h2>
+      <div class="modal-platform modal-platform--tg">TELEGRAM</div>
+      <p class="modal-sub">日向ヒナタ · Hinata Moon</p>
+      <div class="modal-desc">
+        <p>Mi espacio más íntimo y directo. Aquí comparto lo que no puedes ver en ningún otro lado.<br/>Adelantos exclusivos, contenido detrás de escenas y mucho más.</p>
+        <div class="modal-features">
+          <div class="modal-feature modal-feature--tg">✦ Acceso instantáneo al grupo</div>
+          <div class="modal-feature modal-feature--tg">✦ Contenido exclusivo privado</div>
+          <div class="modal-feature modal-feature--tg">✦ Mensajes directos y especiales</div>
+          <div class="modal-feature modal-feature--tg">✦ Comunidad selecta</div>
+        </div>
+      </div>
+      <blockquote class="modal-quote modal-quote--tg">"Hay un mundo que no se ve desde afuera.<br/>Únete y descúbrelo."</blockquote>
+      <a href="https://t.me/+AKlA2aO9yBkzM2Ux" target="_blank" class="modal-cta modal-cta--tg">
+        <svg class="modal-cta-svg" viewBox="0 0 500 60" preserveAspectRatio="none">
+          <rect class="modal-cta-rect modal-cta-rect--tg" x="2" y="2" width="496" height="56" rx="28" ry="28" fill="none"/>
+        </svg>
+        <span>UNIRME AL GRUPO DE TELEGRAM</span><span class="modal-btn-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL WHATSAPP -->
+<div class="section-modal" id="modal-whatsapp">
+  <div class="modal-backdrop" onclick="closeModal('modal-whatsapp')"></div>
+  <div class="modal-content modal-content--whatsapp">
+    <button class="modal-close" onclick="closeModal('modal-whatsapp')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      CERRAR
+    </button>
+    <div class="modal-bg-img"></div>
+    <div class="modal-bg-overlay modal-bg-overlay--wa"></div>
+    <div class="modal-frame-svg-wrap">
+      <svg class="modal-frame-svg" viewBox="0 0 800 580" preserveAspectRatio="none">
+        <rect class="modal-frame-rect modal-frame-rect--wa" x="3" y="3" width="794" height="574" rx="22" ry="22" fill="none"/>
+      </svg>
+    </div>
+    <div class="modal-inner">
+      <div class="modal-icon modal-icon--wa">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.484 2 12.017c0 1.99.521 3.86 1.438 5.482L2.05 22l4.638-1.358A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10C22 6.477 17.523 2 12 2z"/></svg>
+      </div>
+      <h2 class="modal-title modal-title--wa">GRUPO VIP</h2>
+      <div class="modal-platform modal-platform--wa">WHATSAPP</div>
+      <p class="modal-sub">日向ヒナタ · Hinata Moon</p>
+      <div class="modal-desc">
+        <p>Únete a mi grupo exclusivo de WhatsApp donde comparto momentos únicos y contenido especial.<br/>Acceso directo, sin intermediarios.</p>
+        <div class="modal-features">
+          <div class="modal-feature modal-feature--wa">✦ Grupo privado exclusivo</div>
+          <div class="modal-feature modal-feature--wa">✦ Fotos y videos únicos</div>
+          <div class="modal-feature modal-feature--wa">✦ Actualizaciones diarias</div>
+          <div class="modal-feature modal-feature--wa">✦ Contacto más cercano</div>
+        </div>
+      </div>
+      <blockquote class="modal-quote modal-quote--wa">"Lo exclusivo no se anuncia,<br/>se comparte con quienes se atreven."</blockquote>
+      <a href="https://wa.me/qr/WPKLTON4KF53A1" target="_blank" class="modal-cta modal-cta--wa">
+        <svg class="modal-cta-svg" viewBox="0 0 500 60" preserveAspectRatio="none">
+          <rect class="modal-cta-rect modal-cta-rect--wa" x="2" y="2" width="496" height="56" rx="28" ry="28" fill="none"/>
+        </svg>
+        <span>UNIRME AL GRUPO DE WHATSAPP</span><span class="modal-btn-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INSTAGRAM -->
+<div class="section-modal" id="modal-instagram">
+  <div class="modal-backdrop" onclick="closeModal('modal-instagram')"></div>
+  <div class="modal-content modal-content--instagram">
+    <button class="modal-close" onclick="closeModal('modal-instagram')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      CERRAR
+    </button>
+    <div class="modal-bg-img"></div>
+    <div class="modal-bg-overlay modal-bg-overlay--ig"></div>
+    <div class="modal-frame-svg-wrap">
+      <svg class="modal-frame-svg" viewBox="0 0 800 580" preserveAspectRatio="none">
+        <rect class="modal-frame-rect modal-frame-rect--ig" x="3" y="3" width="794" height="574" rx="22" ry="22" fill="none"/>
+      </svg>
+    </div>
+    <div class="modal-inner">
+      <div class="modal-icon modal-icon--ig">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </div>
+      <h2 class="modal-title modal-title--ig">SÍGUEME</h2>
+      <div class="modal-platform modal-platform--ig">INSTAGRAM</div>
+      <p class="modal-sub">日向ヒナタ · Hinata Moon</p>
+      <div class="modal-desc">
+        <p>Mi ventana pública al mundo. Fotos cuidadas, estética oscura y momentos seleccionados.<br/>Sígueme y sé parte de mi universo.</p>
+        <div class="modal-features">
+          <div class="modal-feature modal-feature--ig">✦ Publicaciones estéticas</div>
+          <div class="modal-feature modal-feature--ig">✦ Stories exclusivos</div>
+          <div class="modal-feature modal-feature--ig">✦ Detrás de escenas</div>
+          <div class="modal-feature modal-feature--ig">✦ Comunidad creciente</div>
+        </div>
+      </div>
+      <blockquote class="modal-quote modal-quote--ig">"No soy un filtro. Soy una experiencia.<br/>Cada imagen es una promesa."</blockquote>
+      <a href="https://www.instagram.com/hinattax_moon?igsh=bDQyZjl4cm1saTAx" target="_blank" class="modal-cta modal-cta--ig">
+        <svg class="modal-cta-svg" viewBox="0 0 500 60" preserveAspectRatio="none">
+          <rect class="modal-cta-rect modal-cta-rect--ig" x="2" y="2" width="496" height="56" rx="28" ry="28" fill="none"/>
+        </svg>
+        <span>IR A MI INSTAGRAM</span><span class="modal-btn-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONTACTO / ARSMATE -->
+<div class="section-modal" id="modal-contacto">
+  <div class="modal-backdrop" onclick="closeModal('modal-contacto')"></div>
+  <div class="modal-content modal-content--arsmate">
+    <button class="modal-close" onclick="closeModal('modal-contacto')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      CERRAR
+    </button>
+    <div class="modal-bg-img"></div>
+    <div class="modal-bg-overlay modal-bg-overlay--as"></div>
+    <div class="modal-frame-svg-wrap">
+      <svg class="modal-frame-svg" viewBox="0 0 800 580" preserveAspectRatio="none">
+        <rect class="modal-frame-rect modal-frame-rect--as" x="3" y="3" width="794" height="574" rx="22" ry="22" fill="none"/>
+      </svg>
+    </div>
+    <div class="modal-inner">
+      <div class="modal-icon modal-icon--as">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </div>
+      <div class="modal-arsmate-logo">
+        <img src="logo-arsmate.png" alt="Arsmate" class="modal-arsmate-logo-img" />
+      </div>
+      <h2 class="modal-title modal-title--as">CONTENIDO EXCLUSIVO</h2>
+      <p class="modal-sub">日向ヒナタ · Hinata Moon</p>
+      <div class="modal-desc">
+        <p>No todo el mundo tiene acceso. Este perfil es para quienes se atreven.<br/>Fotografías íntimas, videos exclusivos, contenido personalizado.</p>
+        <div class="modal-features">
+          <div class="modal-feature modal-feature--as">✦ Fotos y videos exclusivos</div>
+          <div class="modal-feature modal-feature--as">✦ Contenido personalizado</div>
+          <div class="modal-feature modal-feature--as">✦ Acceso directo y privado</div>
+          <div class="modal-feature modal-feature--as">✦ Actualizaciones constantes</div>
+        </div>
+      </div>
+      <blockquote class="modal-quote modal-quote--as">"La vida es demasiado corta para ser un susurro.<br/>¿Te atreves a quedarte?"</blockquote>
+      <a href="https://arsmate.com/Moonhinata" target="_blank" class="modal-cta modal-cta--as">
+        <svg class="modal-cta-svg" viewBox="0 0 500 60" preserveAspectRatio="none">
+          <rect class="modal-cta-rect modal-cta-rect--as" x="2" y="2" width="496" height="56" rx="28" ry="28" fill="none"/>
+        </svg>
+        <span>VER PERFIL COMPLETO EN ARSMATE</span><span class="modal-btn-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     NAVBAR
+     ============================================= -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-avatar-wrap">
+      <img src="logo-hinata.png" alt="Hinata Moon Logo" class="nav-avatar nav-avatar--logo" />
+      <div class="nav-avatar-ring"></div>
+    </div>
+    <div class="nav-title-wrap">
+      <span class="nav-name">HINATA</span>
+      <span class="nav-kanji">日向ヒナタ</span>
+    </div>
+    <div class="sakura-icon">🌸</div>
+  </div>
+
+  <div class="nav-links">
+    <a href="#inicio" class="nav-btn nav-btn--home" onclick="scrollToTop(event)">
+      <svg class="nav-btn-electric-svg" viewBox="0 0 300 46" preserveAspectRatio="none"><rect class="nav-e-rect nav-e-rect--home" x="1" y="1" width="298" height="44" rx="22" ry="22" fill="none"/></svg>
+      <span class="nav-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>
+      <span>INICIO</span><span class="nav-arrow">❯</span>
+      <div class="nav-glow"></div>
+    </a>
+    <div class="nav-kunai-sep"><img src="kunai.png" alt="✦" class="kunai-sep-img"/></div>
+    <button class="nav-btn nav-btn--telegram" onclick="openModal('modal-telegram')">
+      <svg class="nav-btn-electric-svg" viewBox="0 0 300 46" preserveAspectRatio="none"><rect class="nav-e-rect nav-e-rect--telegram" x="1" y="1" width="298" height="44" rx="22" ry="22" fill="none"/></svg>
+      <span class="nav-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></span>
+      <span>TELEGRAM</span><span class="nav-arrow">❯</span>
+      <div class="nav-glow"></div>
+    </button>
+    <div class="nav-kunai-sep"><img src="kunai.png" alt="✦" class="kunai-sep-img"/></div>
+    <button class="nav-btn nav-btn--whatsapp" onclick="openModal('modal-whatsapp')">
+      <svg class="nav-btn-electric-svg" viewBox="0 0 300 46" preserveAspectRatio="none"><rect class="nav-e-rect nav-e-rect--whatsapp" x="1" y="1" width="298" height="44" rx="22" ry="22" fill="none"/></svg>
+      <span class="nav-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.484 2 12.017c0 1.99.521 3.86 1.438 5.482L2.05 22l4.638-1.358A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10C22 6.477 17.523 2 12 2z"/></svg></span>
+      <span>WHATSAPP</span><span class="nav-arrow">❯</span>
+      <div class="nav-glow"></div>
+    </button>
+    <div class="nav-kunai-sep"><img src="kunai.png" alt="✦" class="kunai-sep-img"/></div>
+    <button class="nav-btn nav-btn--instagram" onclick="openModal('modal-instagram')">
+      <svg class="nav-btn-electric-svg" viewBox="0 0 300 46" preserveAspectRatio="none"><rect class="nav-e-rect nav-e-rect--instagram" x="1" y="1" width="298" height="44" rx="22" ry="22" fill="none"/></svg>
+      <span class="nav-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+      <span>INSTAGRAM</span><span class="nav-arrow">❯</span>
+      <div class="nav-glow"></div>
+    </button>
+    <div class="nav-kunai-sep"><img src="kunai.png" alt="✦" class="kunai-sep-img"/></div>
+    <button class="nav-btn nav-btn--contacto" onclick="openModal('modal-contacto')">
+      <svg class="nav-btn-electric-svg" viewBox="0 0 300 46" preserveAspectRatio="none"><rect class="nav-e-rect nav-e-rect--contacto" x="1" y="1" width="298" height="44" rx="22" ry="22" fill="none"/></svg>
+      <span class="nav-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+      <span>CONTACTO</span><span class="nav-arrow">❯</span>
+      <div class="nav-glow"></div>
+    </button>
+  </div>
+</nav>
+
+<!-- =============================================
+     HERO
+     ============================================= -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-fog"></div>
+  </div>
+
+  <div class="sc-section">
+    <div class="sc-logo-float">
+      <img src="logo-hinata.png" alt="Hinata Moon" class="sc-logo-img" />
+      <div class="sc-logo-glow"></div>
+    </div>
+    <div class="soundcloud-bar">
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-827124931/sets/sexy-playlist-sexy-songs-2022&color=%23ff0080&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+      ></iframe>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-avatar-section">
+      <div class="avatar-container">
+        <div class="avatar-outer-ring"></div>
+        <div class="avatar-inner-ring"></div>
+        <div class="avatar-energy"></div>
+        <img src="foto-bio.jpg" alt="Hinata Moon" class="avatar-img" />
+        <div class="avatar-badge">
+          <img src="logo-hinata.png" alt="badge" style="object-fit:contain;background:transparent;" />
+          <span>MOON HINATA</span>
+        </div>
+        <div class="avatar-sparks">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-profile">
+      <div class="profile-tag">⊙ PERFIL</div>
+      <h1 class="hero-title">
+        <span class="title-hinata">HĪ NATA</span>
+        <span class="title-moon">MOON</span>
+      </h1>
+      <div class="konoha-symbol">
+        <svg viewBox="0 0 100 100" class="konoha-svg">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M50,10 Q80,30 80,60 Q80,85 50,90 Q20,85 20,60 Q20,30 50,10Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="50" y1="10" x2="50" y2="42" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="hero-kanji">日向ヒナタ</div>
+      <div class="hero-quote-main">"Hay miradas que no se piden… se sienten."</div>
+      <div class="hero-bio">
+        <p>Soy <strong>Hinata Moon</strong>, 25 primaveras. Mi piel clara guarda el rastro de mareas tranquilas, mi cabello negro y largo cae como un secreto a medias, y estas curvas son mi forma de abrazar el mundo sin pedir permiso.</p>
+        <p>Amo perderme en la playa cuando el sol se rinde, saborear helado como si cada cucharada fuera una excusa para pecar, y explorar los límites del deseo con la elegancia del <em>BDSM</em>: donde el consentimiento es la verdadera magia, y cada gesto, una promesa.</p>
+        <blockquote class="hero-blockquote">
+          "No soy un filtro. Soy una experiencia.<br/>
+          Si crees que hay mujeres que merecen ser consentidas… aquí estoy.<br/>
+          <em>Mis fotos y mi contenido no te muestran nada… te hacen sentirlo.</em><br/>
+          ¿Te atreves a quedarte?<br/>
+          La vida es demasiado corta para ser un susurro."
+        </blockquote>
+      </div>
+      <div class="arsmate-label-wrap">
+        <img src="logo-arsmate.png" alt="Arsmate" class="arsmate-logo-img" />
+      </div>
+      <a href="https://arsmate.com/Moonhinata" target="_blank" class="cta-btn cta-btn--main">
+        <svg class="cta-electric-svg" viewBox="0 0 400 56" preserveAspectRatio="none">
+          <rect class="cta-e-rect" x="2" y="2" width="396" height="52" rx="26" ry="26" fill="none"/>
+        </svg>
+        <span class="btn-text">VER MI PERFIL COMPLETO</span>
+        <span class="btn-arrow">❯</span>
+        <div class="btn-glow"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="cards-section" id="cards">
+  <div class="cards-grid">
+    <div class="card card--arsmate" id="arsmate-card">
+      <div class="card-bg-img" style="background-image:url('portadaarsmate.jpg')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-border-anim"></div>
+      <div class="card-electric-border"></div>
+      <div class="card-icon-wrap card-icon-wrap--arsmate">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </div>
+      <div class="card-content">
+        <div class="card-arsmate-logo-wrap"><img src="logo-arsmate.png" alt="Arsmate" class="card-arsmate-logo" /></div>
+        <div class="card-platform-name">ARSMATE</div>
+        <p class="card-desc">Mi perfil completo con contenido exclusivo.</p>
+        <a href="https://arsmate.com/Moonhinata" target="_blank" class="card-btn card-btn--arsmate">
+          <svg class="card-btn-electric-svg" viewBox="0 0 260 44" preserveAspectRatio="none"><rect class="card-e-rect card-e-rect--arsmate" x="1" y="1" width="258" height="42" rx="21" ry="21" fill="none"/></svg>
+          <span>VER PERFIL COMPLETO</span><span>↗</span>
+          <div class="card-btn-glow"></div>
+        </a>
+      </div>
+    </div>
+    <div class="card card--telegram">
+      <div class="card-bg-img" style="background-image:url('portadaTelegram.jpg')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-border-anim"></div>
+      <div class="card-electric-border"></div>
+      <div class="card-icon-wrap card-icon-wrap--telegram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      </div>
+      <div class="card-content">
+        <div class="card-platform-name card-label--telegram">TELEGRAM</div>
+        <p class="card-desc">Únete a mi grupo de Telegram.</p>
+        <button onclick="openModal('modal-telegram')" class="card-btn card-btn--telegram">
+          <svg class="card-btn-electric-svg" viewBox="0 0 260 44" preserveAspectRatio="none"><rect class="card-e-rect card-e-rect--telegram" x="1" y="1" width="258" height="42" rx="21" ry="21" fill="none"/></svg>
+          <span>UNIRME AL GRUPO</span><span>↗</span>
+          <div class="card-btn-glow"></div>
+        </button>
+      </div>
+    </div>
+    <div class="card card--whatsapp">
+      <div class="card-bg-img" style="background-image:url('portadaWhatsapp.jpg')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-border-anim"></div>
+      <div class="card-electric-border"></div>
+      <div class="card-icon-wrap card-icon-wrap--whatsapp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.484 2 12.017c0 1.99.521 3.86 1.438 5.482L2.05 22l4.638-1.358A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10C22 6.477 17.523 2 12 2z"/></svg>
+      </div>
+      <div class="card-content">
+        <div class="card-platform-name card-label--whatsapp">WHATSAPP</div>
+        <p class="card-desc">Únete a mi grupo de WhatsApp.</p>
+        <button onclick="openModal('modal-whatsapp')" class="card-btn card-btn--whatsapp">
+          <svg class="card-btn-electric-svg" viewBox="0 0 260 44" preserveAspectRatio="none"><rect class="card-e-rect card-e-rect--whatsapp" x="1" y="1" width="258" height="42" rx="21" ry="21" fill="none"/></svg>
+          <span>UNIRME AL GRUPO</span><span>↗</span>
+          <div class="card-btn-glow"></div>
+        </button>
+      </div>
+    </div>
+    <div class="card card--instagram">
+      <div class="card-bg-img" style="background-image:url('portadaInstagram.jpg')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-border-anim"></div>
+      <div class="card-electric-border"></div>
+      <div class="card-icon-wrap card-icon-wrap--instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </div>
+      <div class="card-content">
+        <div class="card-platform-name card-label--instagram">INSTAGRAM</div>
+        <p class="card-desc">Sígueme en Instagram.</p>
+        <button onclick="openModal('modal-instagram')" class="card-btn card-btn--instagram">
+          <svg class="card-btn-electric-svg" viewBox="0 0 260 44" preserveAspectRatio="none"><rect class="card-e-rect card-e-rect--instagram" x="1" y="1" width="258" height="42" rx="21" ry="21" fill="none"/></svg>
+          <span>IR A INSTAGRAM</span><span>↗</span>
+          <div class="card-btn-glow"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto-section" id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-bg-img"></div>
+    <div class="contacto-overlay"></div>
+    <div class="contacto-border-anim"></div>
+    <div class="contacto-electric"></div>
+    <div class="contacto-content">
+      <div class="contacto-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+      <div class="arsmate-label-wrap arsmate-label-wrap--lg">
+        <img src="logo-arsmate.png" alt="Arsmate" class="arsmate-logo-img arsmate-logo-img--lg" />
+      </div>
+      <h2 class="contacto-title">ACCESO EXCLUSIVO</h2>
+      <p class="contacto-sub">日向ヒナタ · Hinata Moon</p>
+      <p class="contacto-desc">No todo el mundo tiene acceso. Este perfil es para quienes se atreven.<br/>Contenido exclusivo, experiencias únicas, sin filtros. <strong>¿Estás listo?</strong></p>
+      <div class="contacto-quote">"No soy un filtro. Soy una experiencia. ¿Te atreves a quedarte?"</div>
+      <a href="https://arsmate.com/Moonhinata" target="_blank" class="cta-btn cta-btn--contacto">
+        <svg class="cta-electric-svg" viewBox="0 0 400 56" preserveAspectRatio="none">
+          <rect class="cta-e-rect" x="2" y="2" width="396" height="52" rx="26" ry="26" fill="none"/>
+        </svg>
+        <span class="btn-text">VER PERFIL COMPLETO</span>
+        <span class="btn-arrow">↗</span>
+        <div class="btn-glow"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-symbol">⊙</div>
+  <span>© 2025 Hinata Moon · Todos los derechos reservados.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
